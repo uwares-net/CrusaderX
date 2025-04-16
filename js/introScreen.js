@@ -178,7 +178,7 @@ const IntroScreen = (function() {
    */
   function addSourceCodeLink() {
     const sourceLink = document.createElement('a');
-    sourceLink.href = 'https://crusaderx.fonearcade.com/source.zip';
+    sourceLink.href = 'https://github.com/uwares-net/CrusaderX';
     sourceLink.textContent = 'source code';
     sourceLink.target = '_blank'; // Open link in a new tab
     Object.assign(sourceLink.style, {
