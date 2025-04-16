@@ -77,7 +77,7 @@ Contributions are welcome! Please feel free to submit a Pull Request.
 
 ## 📧 Contact
 
-For questions or feedback, please contact us at [hello@uwares.net](mailto:hello@uwares.net) or visit us [here](https://crusaderx.fonearcade.com).
+For questions or feedback, please contact us at [hello@uwares.net](mailto:hello@uwares.net) or visit us [here](https://uwares.net).
 
 ---
 
