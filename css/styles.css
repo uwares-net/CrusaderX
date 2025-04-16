@@ -1,0 +1,352 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body, html {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    font-family: Arial, sans-serif;
+    background-color: #000;
+    color: #fff;
+}
+
+#container {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+
+#info-panel {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    background-color: rgba(0, 0, 0, 0.7);
+    border-radius: 10px;
+    padding: 15px;
+    max-width: 300px;
+    z-index: 10;
+    pointer-events: none;
+}
+
+#info-panel h1 {
+    font-size: 24px;
+    margin-bottom: 15px;
+    color: #f0f0f0;
+}
+
+#object-info {
+    padding: 10px;
+    border-radius: 5px;
+    background-color: rgba(50, 50, 50, 0.5);
+}
+
+#object-info h2 {
+    font-size: 18px;
+    margin-bottom: 10px;
+    color: #f0f0f0;
+}
+
+#object-info p {
+    font-size: 14px;
+    line-height: 1.4;
+    margin-bottom: 5px;
+}
+
+#controls-panel {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    background-color: rgba(0, 0, 0, 0.7);
+    border-radius: 10px;
+    padding: 15px;
+    z-index: 10;
+}
+
+button {
+    background-color: #1e88e5;
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    margin-bottom: 10px;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #1565c0;
+}
+
+.control-group {
+    margin-top: 10px;
+    display: flex;
+    align-items: center;
+}
+
+.control-group label {
+    margin-right: 10px;
+    min-width: 80px;
+}
+
+.fly-by-instruction {
+    margin-top: 15px;
+    display: block;
+    text-align: center;
+}
+
+.fly-by-instruction p {
+    font-size: 14px;
+    color: #f0f0f0;
+}
+
+.fly-by-active {
+    background-color: rgba(0, 150, 255, 0.2);
+    border-radius: 5px;
+    padding: 5px;
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0% { background-color: rgba(0, 150, 255, 0.1); }
+    50% { background-color: rgba(0, 150, 255, 0.3); }
+    100% { background-color: rgba(0, 150, 255, 0.1); }
+}
+
+.fly-by-instruction kbd {
+    background-color: #333;
+    border-radius: 3px;
+    border: 1px solid #666;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
+    color: #fff;
+    display: inline-block;
+    font-size: 12px;
+    font-weight: bold;
+    line-height: 1;
+    padding: 3px 6px;
+    margin: 0 2px;
+}
+
+input[type="range"] {
+    width: 100px;
+}
+
+/* Loading indicator */
+.loading {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 24px;
+    color: white;
+}
+
+#music-toggle {
+    padding: 5px 10px;
+    background-color: #2c3e50;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+#music-toggle:hover {
+    background-color: #34495e;
+}
+
+#music-toggle:active {
+    background-color: #1a252f;
+}
+
+#coordinates-display {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background-color: rgba(0, 0, 0, 0.7);
+    border-radius: 10px;
+    padding: 15px;
+    z-index: 10;
+    font-family: 'Courier New', monospace;
+    min-width: 220px;
+}
+
+#coordinates-display h3 {
+    font-size: 16px;
+    margin-bottom: 10px;
+    color: #4fc3f7;
+    text-align: center;
+}
+
+#coordinates-display div {
+    font-size: 14px;
+    line-height: 1.5;
+    color: #f0f0f0;
+}
+
+#coord-x, #coord-y, #coord-z, #coord-distance {
+    font-weight: bold;
+}
+
+#coord-x {
+    color: #ff8a80; /* Red */
+}
+
+#coord-y {
+    color: #b9f6ca; /* Green */
+}
+
+#coord-z {
+    color: #84ffff; /* Blue */
+}
+
+#coord-distance {
+    margin-top: 5px;
+    color: #ffff8d; /* Yellow */
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
+    padding-top: 5px;
+}
+
+/* Keep your base #hud styles */
+#hud {
+    position: absolute !important;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%; /* We only need height for the inner element now */
+    pointer-events: none;
+    z-index: 9999 !important;
+    visibility: visible !important;
+    display: block !important; /* Base display */
+    opacity: 1 !important;
+}
+
+#hud #coordinates-display {
+  /* Optional: Add some padding/background for visibility */
+   /* background-color: rgba(0, 0, 0, 0.5); */
+   /* color: white; */
+   /* padding: 5px 10px; */
+   /* border-radius: 4px; */
+
+   /* Control its own width */
+   width: auto; /* Shrink wrap */
+   max-width: 95%; /* Prevent touching edges */
+   text-align: left; /* Keep text aligned left */
+}
+
+
+/* --- Mobile Styles --- */
+
+
+/* Crosshair element */
+#crosshair {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #FFFFFF;
+    font-size: 24px;
+    z-index: 10000;
+    pointer-events: none;
+    visibility: visible !important;
+    display: block !important;
+}
+
+#help-page-content {
+    scrollbar-width: thin;
+    scrollbar-color: #00ffff rgba(10, 20, 40, 0.9);
+}
+
+#help-page-content::-webkit-scrollbar {
+    width: 8px;
+}
+
+#help-page-content::-webkit-scrollbar-track {
+    background: rgba(10, 20, 40, 0.5);
+    border-radius: 4px;
+}
+
+#help-page-content::-webkit-scrollbar-thumb {
+    background-color: #00ffff;
+    border-radius: 4px;
+    border: 2px solid rgba(10, 20, 40, 0.9);
+}
+
+#help-page-content h2,
+#help-page-content h3 {
+    font-family: 'Orbitron', sans-serif;
+    text-transform: uppercase;
+}
+
+#help-page-content ul {
+    margin-top: 5px;
+    line-height: 1.8; 
+}
+
+#help-page-content kbd {
+    background-color: #334; /* Slightly different background */
+    border-radius: 3px;
+    border: 1px solid #668;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.3);
+    color: #00ffff; /* Match cyan theme */
+    display: inline-block;
+    font-size: 0.9em;
+    font-weight: bold;
+    line-height: 1;
+    padding: 4px 7px; /* Slightly larger padding */
+    margin: 0 4px;
+    font-family: 'Courier New', monospace; /* Monospace for keys */
+    vertical-align: middle;
+}
+
+#credits-page-content {
+    /* Styles mostly set dynamically via JS for background, padding, border, etc. */
+    /* Add scrollbar styling if needed (copy from help page if desired) */
+    scrollbar-width: thin;
+    scrollbar-color: #00ffff rgba(10, 20, 40, 0.9);
+}
+
+#credits-page-content::-webkit-scrollbar { width: 8px; }
+#credits-page-content::-webkit-scrollbar-track { background: rgba(10, 20, 40, 0.5); border-radius: 4px; }
+#credits-page-content::-webkit-scrollbar-thumb { background-color: #00ffff; border-radius: 4px; border: 2px solid rgba(10, 20, 40, 0.9); }
+
+#credits-page-content h2,
+#credits-page-content h3 {
+    font-family: 'Orbitron', sans-serif; /* Ensure consistent header font */
+    text-transform: uppercase;
+}
+
+#credits-page-content a { /* Style links */
+    color: #87CEFA; /* Light blue link */
+    text-decoration: none;
+    transition: color 0.2s;
+}
+#credits-page-content a:hover {
+    color: #00ffff; /* Brighter cyan on hover */
+    text-decoration: underline;
+}
+
+@media (max-width: 768px) {
+    /* Mobile override for the cockpit image */
+    #cockpit-image {
+      width: 100% !important;
+      height: 100% !important;
+      top: 0 !important;
+      left: 0 !important;
+      transform: none !important;
+      transition: none !important;
+      min-width: 100vw !important;
+      min-height: 100vh !important;
+    }
+  }
+  
+
+
+@keyframes pulse {
+    0% { box-shadow: 0 0 8px rgba(0, 255, 255, 0.5); }
+    50% { box-shadow: 0 0 15px rgba(0, 255, 255, 0.8); }
+    100% { box-shadow: 0 0 8px rgba(0, 255, 255, 0.5); }
+}

@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+    content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
+  <title>Crusader X</title>
+  <link rel="stylesheet" href="css/styles.css">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+  <link rel="manifest" href="site.webmanifest">
+
+</head>
+
+<body>
+  <div id="container" tabindex="0">
+    <div id="loading-screen">
+      <div class="loading-content">
+        <div class="loading-bar">
+          <div class="loading-progress"></div>
+        </div>
+      </div>
+    </div>
+
+    <div id="hud">
+      <div id="coordinates-display">
+        <div>Coords = (<span id="coord-x">0.00</span>, <span id="coord-y">0.00</span>, <span id="coord-z">0.00</span>)
+        </div>
+        <div>Distance from Sun: <span id="coord-distance">0.00</span> AU</div>
+        <div>Velocity: <span id="velocity-display">0.00</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Background Music -->
+  <audio id="background-music" loop>
+    <source src="music/aldebaran.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+  </audio>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-H107MHCDSN"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+
+    gtag('config', 'G-H107MHCDSN');
+  </script>
+  <!-- Three.js Library -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script src="js/lib/nipplejs.min.js"></script>
+  <script src="js/lib/OBB.js"></script>
+
+  <!-- Application Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/three@0.132.2/examples/js/loaders/GLTFLoader.js"></script>
+
+  <script src="js/constants.js"></script>
+  <script src="js/utils.js"></script>
+  <script src="js/celestialBodies.js"></script>
+  <script src="js/solarSystem.js"></script>
+  <script src="js/controls.js"></script>
+  <script src="js/pointerLockControls.js"></script>
+  <script src="js/uiController.js"></script>
+  <script src="js/combatHUD.js"></script>
+  <script src="js/explorationHUD.js"></script>
+  <script src="js/shipController.js"></script>
+  <script src="js/events.js"></script>
+  <script src="js/laserSystem.js"></script>
+  <script src="js/skybox.js"></script>
+  <script src="js/mobileContols.js"></script>
+
+  <!-- Multiplayer networking -->
+  <!-- Multiplayer networking: load geckos.io client via CDN as an ES module -->
+  <script type="module">
+    import geckos from 'https://cdn.jsdelivr.net/npm/@geckos.io/client@3.0.1/+esm';
+    window.geckos = geckos;
+    console.log("Geckos.io client loaded via ESM from CDN");
+  </script>
+  <script src="js/networkController.js"></script>
+  <script src="js/enemyShip.js"></script>
+
+  <!-- Intro Screen -->
+  <script src="js/introScreen.js"></script>
+
+  <script src="js/killsTable.js"></script>
+  <script>
+    // Instantiate the kills table globally
+    window.killsTableInstance = new KillsTable();
+  </script>
+
+  <script src="js/app.js"></script>
+
+  <script>
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('sw.js')
+        .then(registration => console.log('Service Worker registered:', registration))
+        .catch(error => console.error('Service Worker registration failed:', error));
+    }
+  </script>
+</body>
+
+</html>
